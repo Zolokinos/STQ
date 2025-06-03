@@ -30,7 +30,7 @@ namespace DefaultNamespace
     [CreateAssetMenu(fileName = "FrontConfig", menuName = "Scriptable Objects/FrontConfig")]
     public class FrontConfig : ScriptableObject
     {
-        [SerializeField] public String name;
+        [SerializeField] public String frontName;
         [SerializeField] public int day;
 
         [SerializedDictionary("Tag", "Value")] [SerializeField]
@@ -42,5 +42,7 @@ namespace DefaultNamespace
 
         [SerializedDictionary("Tag", "Value")] [SerializeField]
         public SerializedDictionary<FrontTag, bool> fiasco;
+        
+        [SerializeField] public String fiascoText;
     }
 }
