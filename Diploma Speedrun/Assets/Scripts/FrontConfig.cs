@@ -35,4 +35,8 @@ public class FronConfig : ScriptableObject
     [SerializeField] public Location location;
 
     [SerializeField] public List<StageConfig> stages;
+    
+    [SerializedDictionary("Tag", "Value")]
+    [SerializeField]
+    public SerializedDictionary<FrontTag, bool> fiasco;
 }
