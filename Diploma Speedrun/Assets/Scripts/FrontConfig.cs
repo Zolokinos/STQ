@@ -9,7 +9,7 @@ namespace DefaultNamespace
     [Serializable]
     public class Choice
     {
-        [SerializeField] public String text;
+        [SerializeField] public string text;
 
         [SerializedDictionary("Tag", "Value")] [SerializeField]
         public SerializedDictionary<FrontTag, bool> requirements;
@@ -22,7 +22,7 @@ namespace DefaultNamespace
     [Serializable]
     public class StageConfig
     {
-        [SerializeField] public String text;
+        [SerializeField] public string text;
         [SerializeField] public List<Choice> choices;
     }
 
@@ -30,7 +30,7 @@ namespace DefaultNamespace
     [CreateAssetMenu(fileName = "FrontConfig", menuName = "Scriptable Objects/FrontConfig")]
     public class FrontConfig : ScriptableObject
     {
-        [SerializeField] public String frontName;
+        [SerializeField] public string frontName;
         [SerializeField] public int day;
 
         [SerializedDictionary("Tag", "Value")] [SerializeField]
@@ -43,6 +43,10 @@ namespace DefaultNamespace
         [SerializedDictionary("Tag", "Value")] [SerializeField]
         public SerializedDictionary<FrontTag, bool> fiasco;
         
-        [SerializeField] public String fiascoText;
+        [SerializeField] public string fiascoText;
+        
     }
 }
+
+
+

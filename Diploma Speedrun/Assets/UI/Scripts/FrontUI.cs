@@ -1,6 +1,6 @@
 namespace UI
 {
-    public class FrontOnMap
+    public class FrontUI
     {
         
     }

@@ -8,5 +8,10 @@ namespace DefaultNamespace
     public class FrontSetConfig : ScriptableObject
     {
         [SerializeField] public List<FrontConfig> fronts;
+        
+        public FrontConfig GetFrontConfig(int locationNumber)
+        {
+            return fronts[locationNumber];
+        }
     }
 }
