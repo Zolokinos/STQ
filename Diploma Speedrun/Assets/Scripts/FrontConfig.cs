@@ -9,7 +9,12 @@ public class Choice
 {
     [SerializeField] public String text;
 
-    [SerializedDictionary("Tag", "Value")] [SerializeField]
+    [SerializedDictionary("Tag", "Value")]
+    [SerializeField]
+    public SerializedDictionary<FrontTag, bool> requirements;
+
+    [SerializedDictionary("Tag", "Value")] 
+    [SerializeField]
     public SerializedDictionary<FrontTag, bool> effect;
 }
 
