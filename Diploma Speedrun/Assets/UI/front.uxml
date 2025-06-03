@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/front-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#front-button" />
+    <ui:Button text="fron-button-text" class="front-button" />
+</ui:UXML>
