@@ -10,3 +10,4 @@ namespace DefaultNamespace
         [SerializeField] public List<FrontConfig> fronts;
     }
 }
+

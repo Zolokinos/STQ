@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276e9f968210c3aab8fe07dca42d9dbe, type: 3}
   m_Name: "\u041B\u0435\u0448\u0438\u0439 \u0447\u0443\u0434\u0438\u0442"
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.FrontConfig
-  name: "\u041B\u0435\u0448\u0438\u0439 \u0447\u0443\u0434\u0438\u0442"
+  frontName: "\u041B\u0435\u0448\u0438\u0439 \u0447\u0443\u0434\u0438\u0442"
   day: 2
   requirements:
     _serializedList:

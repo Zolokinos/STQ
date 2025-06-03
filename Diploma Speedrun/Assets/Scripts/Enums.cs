@@ -2,15 +2,21 @@ namespace DefaultNamespace
 {
     public enum FrontTag
     {
-        Tag1 = 0,
-        Tag2,
-        Tag3,
+        ЗащитаОтТрасцы,
+        Сокровище,
+        СмертьЛесника,
+        СмертьБатюшки,
+        РеспектБатюшки,
+        РеспектЛешего,
+        Смерть,
     }
 
     public enum Location
     {
-        Loca1,
-        Loca2,
-        Loca3
+        Деревня,
+        Лес,
+        Лес2,
+        Поле,
     }
 }
+
