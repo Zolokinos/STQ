@@ -95,11 +95,11 @@ namespace UI
             var label = endMenu.Q<Label>("end-message");
             if (_worldState.tags[FrontTag.Смерть])
             {
-                label.text = "ПРИЗВАЛИ";
+                label.text = "ВАС ОТПРАВИЛИ НА ВОЙНУ";
             }
             else
             {
-                label.text = "ОТКОСИЛ";
+                label.text = "";
             }
             _document.rootVisualElement.Add(endMenu);
         }

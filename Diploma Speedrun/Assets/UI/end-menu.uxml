@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1; justify-content: center;">
-        <ui:Label text="КОНЕЦ" name="end-message" style="-unity-text-align: upper-center; font-size: 50%;" />
+        <ui:Label text="КОНЕЦ" name="end-message" style="-unity-text-align: upper-center; font-size: 50%; white-space: normal;" />
     </ui:VisualElement>
 </ui:UXML>
