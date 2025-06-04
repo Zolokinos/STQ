@@ -66,7 +66,7 @@ namespace UI
                 var currentFront = frontUI?._frontConfig;
                 if (currentFront == null)
                     continue;
-                if (currentFront.GetCurrentStage(_worldState) == null)
+                if (currentFront.GetCurrentStage(_worldState) == null && !currentFront.IsCompleted)
                     currentFront.FiascoAffect(_worldState);
             }
         }
