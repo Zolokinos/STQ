@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -11,13 +12,14 @@ namespace UI
     public class FrontUI : MonoBehaviour
     { 
         [SerializeField] private VisualTreeAsset _dialogeChoice;
-        [SerializeField] private StyleSheet _styleSheet;
         private UIDocument _uiDocument;
 
         [SerializeField] private WorldState _worldState;
         private FrontConfig _frontConfig;
 
         private List<FrontChoiceUI> _choices = new();
+        private Button _skip;
+        private Label _description;
         private StageConfig _currentStage;
         private VisualElement _root;
         
@@ -34,12 +36,14 @@ namespace UI
             _root = _uiDocument.rootVisualElement ?? throw new NullReferenceException(nameof(_uiDocument));
 
             SetVisualElements();
+            RegisterButtonCallbacks();
         }
 
         protected void SetVisualElements()
         {
-            var label = _root.Q<Label>("description");
-            label.text = _currentStage.text;
+            _skip = _root.Q<Button>("skip");
+            _description = _root.Q<Label>("description");
+            _description.text = _currentStage.text;
 
             foreach (var choice in _currentStage.choices)
             {
@@ -54,19 +58,15 @@ namespace UI
             }
         }
 
-        /*
-        private void AddChoiceButton(int choiceNumber)
+        protected void RegisterButtonCallbacks()
         {
-            var choice = _dialogeChoice.Instantiate();
-            var choiceButton = choice.Q<Button>("choice");
-            /*if (!_currentStage.choices[choiceNumber].IsAvailable(_worldState))
-            {
-                choiceButton.styleSheets.Add(_styleSheet);
-            }#1#
-            choiceButton.text = _currentStage.choices[choiceNumber].text;
-            _choices.Add(choiceButton);
-            _root.Add(choice); 
-        }*/
+            _skip.RegisterCallback<ClickEvent>(OnSkip);
+        }
 
+        private void OnSkip(ClickEvent evt)
+        {
+            _worldState.day += 1;
+            SceneManager.LoadScene("Map");
+        }
     }
 }

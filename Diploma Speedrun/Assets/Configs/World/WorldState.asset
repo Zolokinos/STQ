@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WorldState
   m_EditorClassIdentifier: Assembly-CSharp::WorldState
   worldStateInit: {fileID: 11400000, guid: 5ddc68bd0651c56b9b76ef4f654e2d62, type: 2}
-  day: 0
-  currentFront: {fileID: 11400000, guid: 386ba45772a4dcf23b0a0ebc214648f7, type: 2}
+  day: 4
+  currentFront: {fileID: 11400000, guid: abf138e8f99449cd2a3d835f2113b57d, type: 2}

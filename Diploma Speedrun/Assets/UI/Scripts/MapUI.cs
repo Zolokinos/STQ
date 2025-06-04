@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -16,15 +17,24 @@ namespace UI
         
         private UIDocument _document;
 
+        private InfoUI _infoUI;
         private List<FrontOnMapUI> _frontsUI;
         
         void Awake()
         {
             _document = GetComponent<UIDocument>();
             _frontsUI = _worldState.frontsUI;
+            RefreshInfo();
             RefreshFronts();
         }
 
+        private void RefreshInfo()
+        {
+            _infoUI = new InfoUI(
+                _document.rootVisualElement.Q<VisualElement>("info"),
+                _worldState
+            );
+        }
         private void RefreshFronts()
         {
             for (int i = 0; i < _frontsUI.Capacity; i++)

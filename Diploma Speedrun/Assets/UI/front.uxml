@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1;">
+        <ui:Button text="Покинуть" name="skip" style="font-size: 20px;" />
         <ui:Label text="longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong" name="description" style="background-color: rgb(255, 255, 255); flex-grow: 1; flex-shrink: 1; font-size: 40%; white-space: normal;" />
     </ui:VisualElement>
 </ui:UXML>
