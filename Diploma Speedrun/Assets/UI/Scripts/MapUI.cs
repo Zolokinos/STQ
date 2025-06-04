@@ -14,6 +14,7 @@ namespace UI
     {
         [SerializeField] private FrontSetConfig _frontsConfig;
         [SerializeField] private WorldState _worldState;
+        [SerializeField] private VisualTreeAsset _endMenu;
         
         private UIDocument _document;
 
@@ -24,10 +25,17 @@ namespace UI
         {
             _document = GetComponent<UIDocument>();
             _frontsUI = _worldState.frontsUI;
+
+            if (_worldState.day >= 4)
+            {
+                EndGame();
+                return;
+            }
+            
             RefreshInfo();
             RefreshFronts();
         }
-
+        
         private void RefreshInfo()
         {
             _infoUI = new InfoUI(
@@ -64,6 +72,12 @@ namespace UI
                                 frontConfig.AreRequirementsMet(_worldState)
                 ));
             return result;
+        }
+
+        private void EndGame()
+        {
+            _document.rootVisualElement.Clear();
+            _endMenu.CloneTree(_document.rootVisualElement);
         }
     }
 }
