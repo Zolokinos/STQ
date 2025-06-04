@@ -12,15 +12,23 @@ public class WorldState : ScriptableObject
 
     [NonSerialized] public int day = 0;
     [NonSerialized] public FrontConfig currentFront;
-    [NonSerialized] public Dictionary<FrontTag, bool> tags;
+    [NonSerialized] public Dictionary<FrontTag, bool> tags = new();
     [NonSerialized]
     public List<FrontOnMapUI> frontsUI = new(new FrontOnMapUI[Enum.GetNames(typeof(Location)).Length]);
     
     public WorldState()
     {
+        foreach (FrontTag tag in Enum.GetValues(typeof(FrontTag)))
+        {
+            tags[tag] = false;
+        }
+
         if (worldStateInit?.frontTags != null)
-            tags = new(worldStateInit.frontTags);
-        else
-            tags = new();
+        {
+            foreach (FrontTag tag in worldStateInit.frontTags.Keys)
+            {
+                tags[tag] = worldStateInit.frontTags[tag];
+            }
+        }
     }
 }

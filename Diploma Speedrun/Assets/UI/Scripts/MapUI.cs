@@ -26,6 +26,8 @@ namespace UI
             _document = GetComponent<UIDocument>();
             _frontsUI = _worldState.frontsUI;
 
+            FindFiasco();
+            
             if (_worldState.day >= 4)
             {
                 EndGame();
@@ -57,6 +59,19 @@ namespace UI
         }
 
         //PIECE OF SHIT
+        private void FindFiasco()
+        {
+            foreach (var frontUI in _frontsUI)
+            {
+                var currentFront = frontUI?._frontConfig;
+                if (currentFront == null)
+                    continue;
+                if (currentFront.GetCurrentStage(_worldState) == null)
+                    currentFront.FiascoAffect(_worldState);
+            }
+        }
+        
+        //PIECE OF SHIT
         private FrontConfig GetFrontConfig(Location location)
         {
             var currentFront = _frontsUI.ElementAtOrDefault((int)location)?._frontConfig;
@@ -64,7 +79,6 @@ namespace UI
             {
                 if (currentFront.GetCurrentStage(_worldState) != null)
                     return currentFront;
-                currentFront.FiascoAffect(_worldState);
             }
             var  result = _frontsConfig.fronts.FirstOrDefault(
                 frontConfig => (frontConfig.location == location && 
@@ -77,7 +91,17 @@ namespace UI
         private void EndGame()
         {
             _document.rootVisualElement.Clear();
-            _endMenu.CloneTree(_document.rootVisualElement);
+            var endMenu = _endMenu.Instantiate();
+            var label = endMenu.Q<Label>("end-message");
+            if (_worldState.tags[FrontTag.Смерть])
+            {
+                label.text = "ПРИЗВАЛИ";
+            }
+            else
+            {
+                label.text = "ОТКОСИЛ";
+            }
+            _document.rootVisualElement.Add(endMenu);
         }
     }
 }
