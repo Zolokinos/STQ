@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3601291957ac99ea8aa2caca7eb12829, type: 3}
+  m_Name: FrontSetConfig
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.FrontSetConfig
+  fronts:
+  - {fileID: 11400000, guid: 386ba45772a4dcf23b0a0ebc214648f7, type: 2}
+  - {fileID: 11400000, guid: 27122a80f89edc8198cdb9c2db19a525, type: 2}
+  - {fileID: 11400000, guid: e18298328a8d07787a834a4781aae75a, type: 2}
+  - {fileID: 11400000, guid: cda85da9716ed613889df9153288d7b0, type: 2}
+  - {fileID: 11400000, guid: abf138e8f99449cd2a3d835f2113b57d, type: 2}

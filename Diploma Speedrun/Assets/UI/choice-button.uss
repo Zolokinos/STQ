@@ -1,0 +1,10 @@
+:root {
+}
+
+.unavailable {
+}
+
+.unavailable:hover {
+    background-color: rgb(115, 25, 25);
+    color: rgb(255, 255, 255);
+}

@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/front-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#front-button" />
-    <ui:Button text="fron-button-text" class="front-button" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong" name="description" style="background-color: rgb(255, 255, 255); flex-grow: 1; flex-shrink: 1; font-size: 40%; white-space: normal;" />
+    </ui:VisualElement>
 </ui:UXML>

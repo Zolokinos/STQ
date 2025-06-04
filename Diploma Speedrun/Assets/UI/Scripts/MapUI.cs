@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,37 +8,56 @@ using UnityEngine.UIElements;
 namespace UI
 {
     [RequireComponent(typeof(UIDocument))]
-    public class Map : MonoBehaviour
+    public class MapUI : MonoBehaviour
     {
-        [SerializeField] private FrontSetConfig frontSet;
-        [SerializeField] private WorldState worldState;
+        [SerializeField] private FrontSetConfig _frontsConfig;
+        [SerializeField] private WorldState _worldState;
         
         private UIDocument _document;
         
-        private const int FRONTS_AMOUNT = 1;
-        private List<FrontOnMapUI> _fronts = new List<FrontOnMapUI>(FRONTS_AMOUNT);
+        private List<FrontOnMapUI> _fronts = new(new FrontOnMapUI[Enum.GetNames(typeof(Location)).Length]);
         
         void Awake()
         {
             _document = GetComponent<UIDocument>();
-            InitFronts();
+            RefreshFronts();
         }
 
-        private void InitFronts()
+        private void RefreshFronts()
         {
             for (int i = 0; i < _fronts.Capacity; i++)
             {
-                _fronts[i] = new FrontOnMapUI(
-                    _document.rootVisualElement.Q<VisualElement>("front" + i),
-                    GetFrontConfig(i),
-                    worldState
-                );
+                _fronts[i] = (new FrontOnMapUI(
+                            _document.rootVisualElement.Q<VisualElement>("front" + i),
+                            GetFrontConfig((Location)i),
+                            _worldState
+                        )
+                    );
             }
         }
 
-        private FrontConfig GetFrontConfig(int locationNumber)
+        //PIECE OF SHIT
+        private FrontConfig GetFrontConfig(Location location)
         {
-            return frontSet.fronts[locationNumber];
+            var currentFront = _fronts.ElementAtOrDefault((int)location)?._frontConfig;
+            if (currentFront != null && (_worldState.day - currentFront.day) >= currentFront.stages.Count)
+            {
+                return currentFront;
+            }
+            return _frontsConfig.fronts.FirstOrDefault(frontConfig => (frontConfig.location == location && frontConfig.day == _worldState.day));
+        }
+        
+        private bool TryGetFrontConfig(Location location, out FrontConfig frontConfig)
+        {
+            var currentFront = _fronts.ElementAtOrDefault((int)location)?._frontConfig;
+            if (currentFront != null && (_worldState.day - currentFront.day) >= currentFront.stages.Count)
+            {
+                frontConfig = currentFront;
+                return true;
+            }
+
+            frontConfig = _frontsConfig.fronts.FirstOrDefault(frontConfig => (frontConfig.location == location && frontConfig.day == _worldState.day));
+            return frontConfig != null;
         }
     }
 }

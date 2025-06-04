@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="front-on-map" src="project://database/Assets/UI/front-on-map.uxml?fileID=9197481963319205126&amp;guid=7588bb344e445e4a4b8b24a93dd467dd&amp;type=3#front-on-map" />
+    <Style src="project://database/Assets/UI/front-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#front-button" />
+    <Style src="project://database/Assets/UI/common.uss?fileID=7433441132597879392&amp;guid=c5fd8770b48bac1e48d6087c0a2e0230&amp;type=3#common" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: center; align-items: stretch; flex-wrap: nowrap; align-content: flex-start;">
+        <ui:Instance template="front-on-map" name="front0" />
+        <ui:Instance template="front-on-map" name="front1" />
+        <ui:Instance template="front-on-map" name="front2" />
+        <ui:Instance template="front-on-map" name="front3" />
+    </ui:VisualElement>
+</ui:UXML>
