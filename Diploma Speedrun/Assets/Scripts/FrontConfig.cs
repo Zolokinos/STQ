@@ -22,24 +22,19 @@ namespace DefaultNamespace
         {
             foreach (var tag in requirements.Keys)
             {
-                if (worldState.frontTags.TryGetValue(tag, out var tagValue))
+                if (worldState.tags.TryGetValue(tag, out var tagValue))
                 {
                     if (requirements[tag] != tagValue)
                         return false;
-                }
-                else
-                {
-                    throw new KeyNotFoundException(worldState + ": not found tag " + tag);
                 }
             }
             return true;
         }
 
-        public void AffectWorldState(WorldState worldState)
+        public void Affect(WorldState worldState)
         {
             foreach (var tag in effect.Keys)
-                worldState.frontTags[tag] = effect[tag];
-            worldState.day += 1;
+                worldState.tags[tag] = effect[tag];
         }
     }
 
@@ -70,10 +65,32 @@ namespace DefaultNamespace
         
         [SerializeField] public string fiascoText;
 
+        [field: NonSerialized] public bool IsCompleted { get; set; }
+        
         public StageConfig GetCurrentStage(WorldState worldState)
         {
             int pastDays = worldState.day - day;
             return stages.ElementAtOrDefault(pastDays);
+        }
+        
+        public bool AreRequirementsMet(WorldState worldState)
+        {
+            foreach (var tag in requirements.Keys)
+            {
+                if (worldState.tags.TryGetValue(tag, out var tagValue))
+                {
+                    if (requirements[tag] != tagValue)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        public void FiascoAffect(WorldState worldState)
+        {
+            foreach (var tag in fiasco.Keys)
+                worldState.tags[tag] = fiasco[tag];
+            IsCompleted = true;
         }
     }
 }

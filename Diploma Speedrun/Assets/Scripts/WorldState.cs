@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DefaultNamespace;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,14 +11,16 @@ public class WorldState : ScriptableObject
     [SerializeField] private WorldStateInitConfig worldStateInit;
 
     [SerializeField] public int day = 0;
-    [SerializeField] public Dictionary<FrontTag, bool> frontTags;
+    [SerializeField] public Dictionary<FrontTag, bool> tags;
     [SerializeField] public FrontConfig currentFront;
+    [NonSerialized]
+    public List<FrontOnMapUI> frontsUI = new(new FrontOnMapUI[Enum.GetNames(typeof(Location)).Length]);
     
     public WorldState()
     {
         if (worldStateInit?.frontTags != null)
-            frontTags = new(worldStateInit.frontTags);
+            tags = new(worldStateInit.frontTags);
         else
-            frontTags = new();
+            tags = new();
     }   
 }

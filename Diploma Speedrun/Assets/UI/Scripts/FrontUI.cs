@@ -43,13 +43,14 @@ namespace UI
 
             foreach (var choice in _currentStage.choices)
             {
-                _choices.Add(new FrontChoiceUI(
-                        _root,
-                        choice,
-                        _worldState,
-                        _dialogeChoice
-                    )
+                var frontChoiceUI = new FrontChoiceUI(
+                    _root,
+                    choice,
+                    _worldState,
+                    _dialogeChoice
                 );
+                frontChoiceUI.MadenChoice += (choice) => _frontConfig.IsCompleted = true;
+                _choices.Add(frontChoiceUI);
             }
         }
 
