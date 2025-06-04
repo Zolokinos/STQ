@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace UI
