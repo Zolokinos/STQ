@@ -28,11 +28,8 @@ namespace UI
 
             FindFiasco();
             
-            if (_worldState.day >= 4)
-            {
-                EndGame();
-                return;
-            }
+            if (TryEndGame())
+                    return;
             
             RefreshInfo();
             RefreshFronts();
@@ -88,20 +85,18 @@ namespace UI
             return result;
         }
 
-        private void EndGame()
+        private bool TryEndGame()
         {
+            if (_worldState.day < 4 || !_worldState.tags[FrontTag.Смерть])
+            {
+                return false;
+            }
             _document.rootVisualElement.Clear();
             var endMenu = _endMenu.Instantiate();
             var label = endMenu.Q<Label>("end-message");
-            if (_worldState.tags[FrontTag.Смерть])
-            {
-                label.text = "ВАС ОТПРАВИЛИ НА ВОЙНУ";
-            }
-            else
-            {
-                label.text = "";
-            }
+            label.text = "ВАС ОТПРАВИЛИ НА ВОЙНУ";
             _document.rootVisualElement.Add(endMenu);
+            return true;
         }
     }
 }
