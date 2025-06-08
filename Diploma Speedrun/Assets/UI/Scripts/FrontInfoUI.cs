@@ -25,7 +25,7 @@ namespace UI
         
         protected override void SetVisualElements()
         {
-            _assetUI = Resources.Load<VisualTreeAsset>("UI/front-info");
+            _assetUI = Resources.Load<VisualTreeAsset>("front-info");
             var ui = _assetUI.Instantiate();
             Root.Add(ui);
             

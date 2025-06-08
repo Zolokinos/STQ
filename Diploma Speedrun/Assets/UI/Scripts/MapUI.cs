@@ -34,7 +34,7 @@ namespace UI
                 var locationUI = _document.rootVisualElement.Q<VisualElement>("location" + (int)location);
                 _locationsUI.Add(new LocationOnMapUI(locationUI, _worldState, (Location) location, _frontsConfig));
             }
-            _endMenu = Resources.Load<VisualTreeAsset>("UI/end-menu");
+            _endMenu = Resources.Load<VisualTreeAsset>("end-menu");
             
             _infoUI = new InfoUI(_document.rootVisualElement.Q<VisualElement>("info"), _worldState);
             InitFrontsConfig();

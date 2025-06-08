@@ -20,7 +20,7 @@ namespace UI
         {
             _choice = choice ??  throw new System.ArgumentNullException(nameof(choice));
             _worldState = worldState ??  throw new System.ArgumentNullException(nameof(worldState));
-            _dialogeChoice = Resources.Load<VisualTreeAsset>("UI/dialoge-choice");
+            _dialogeChoice = Resources.Load<VisualTreeAsset>("dialoge-choice");
             _isAvailable = _choice.IsAvailable(_worldState);
             
             Initialize(root);

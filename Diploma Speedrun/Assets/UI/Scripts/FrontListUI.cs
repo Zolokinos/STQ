@@ -21,7 +21,7 @@ namespace UI
         {
             _worldState = worldState;
             _currentFronts = frontConfigs.ToList();
-            _assetUI = Resources.Load<VisualTreeAsset>("UI/front-list");
+            _assetUI = Resources.Load<VisualTreeAsset>("front-list");
             
             HideOnAwake = true;
             Initialize(root);
