@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u041A\u0443\u043F\u0430\u043B\u043B\u0435"
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.FrontConfig
   frontName: "\u041A\u0443\u043F\u0430\u043B\u043B\u0435"
-  day: 1
+  day: 0
   requirements:
     _serializedList: []
   location: 3
@@ -27,7 +27,8 @@ MonoBehaviour:
         _serializedList: []
       effect:
         _serializedList:
-        - Key: 1
+        - Key: 7
           Value: 1
   fiasco:
     _serializedList: []
+  fiascoText: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u041B\u0438\u0445\u043E\u043C\u0430\u043D\u043A\u0438"
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.FrontConfig
   frontName: "\u041B\u0438\u0445\u043E\u043C\u0430\u043D\u043A\u0438"
-  day: 2
+  day: 1
   requirements:
     _serializedList:
     - Key: 0
@@ -86,3 +86,4 @@ MonoBehaviour:
     _serializedList:
     - Key: 3
       Value: 1
+  fiascoText: 
