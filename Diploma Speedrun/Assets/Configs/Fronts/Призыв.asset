@@ -23,7 +23,9 @@ MonoBehaviour:
     choices:
     - text: "\u041E\u0442\u043A\u0443\u043F\u0438\u0442\u044C\u0441\u044F"
       requirements:
-        _serializedList: []
+        _serializedList: 
+        - Key: 1
+          Value: 1
       effect:
         _serializedList:
         - Key: 1
@@ -31,7 +33,9 @@ MonoBehaviour:
     - text: "\u0421\u043F\u0440\u044F\u0442\u0430\u0442\u044C\u0441\u044F \u0443
         \u041B\u0435\u0448\u0435\u0433\u043E"
       requirements:
-        _serializedList: []
+        _serializedList:
+        - Key: 5
+          Value: 1
       effect:
         _serializedList:
         - Key: 5
@@ -39,9 +43,12 @@ MonoBehaviour:
     - text: "\u0421\u043F\u0440\u044F\u0442\u0430\u0442\u044C\u0441\u044F \u0443
         \u041F\u043E\u043F\u0430"
       requirements:
-        _serializedList:
+        _serializedList: [
         - Key: 3
-          Value: 0
+          Value: 0,
+        - Key: 4
+          Value: 1
+        ]
       effect:
         _serializedList:
         - Key: 4
