@@ -92,7 +92,8 @@ namespace DefaultNamespace
         [field: NonSerialized] [CanBeNull] public event Action<WorldState> ChoiceAffected;
         [field: NonSerialized] [CanBeNull] public event Action<FrontConfig> Completed;
 
-        public FrontConfig()
+        //SHIT CODE
+        public void INIT()
         {
             foreach (var stage in stages)
             {

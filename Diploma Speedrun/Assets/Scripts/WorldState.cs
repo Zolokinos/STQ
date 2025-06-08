@@ -29,6 +29,7 @@ public class WorldState : ScriptableObject
 
     public event Action<WorldState> DayChanged;
     
+    //NOT WORKING
     public WorldState()
     {
         foreach (FrontTag tag in Enum.GetValues(typeof(FrontTag)))

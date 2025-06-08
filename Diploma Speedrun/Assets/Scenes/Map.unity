@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.Map
   _frontsConfig: {fileID: 11400000, guid: 0bebf18eb388ba485af5a25c0434c474, type: 2}
-  _worldState: {fileID: 11400000, guid: 735940017ceb2e6d691205fb63c19fff, type: 2}
   _endMenu: {fileID: 9197481963319205126, guid: 2c1df885e56af040e8bc1e69c97b4be9, type: 3}
+  _worldState: {fileID: 11400000, guid: 735940017ceb2e6d691205fb63c19fff, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
