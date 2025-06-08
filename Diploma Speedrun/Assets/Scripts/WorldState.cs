@@ -10,11 +10,24 @@ public class WorldState : ScriptableObject
 {
     [SerializeField] private WorldStateInitConfig worldStateInit;
 
-    [NonSerialized] public int day = 0;
+    [NonSerialized] private int _day;
+    public int Day
+    {
+        get
+        {
+            return _day;
+        }
+        set
+        {
+            _day = value;
+            DayChanged?.Invoke(this);
+        }
+    }
+
     [NonSerialized] public FrontConfig currentFront;
     [NonSerialized] public Dictionary<FrontTag, bool> tags = new();
-    [NonSerialized]
-    public List<FrontOnMapUI> frontsUI = new(new FrontOnMapUI[Enum.GetNames(typeof(Location)).Length]);
+
+    public event Action<WorldState> DayChanged;
     
     public WorldState()
     {

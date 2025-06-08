@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+    <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:Button text="Пропустить день" name="skip" style="font-size: 20px;" />
         <ui:ScrollView name="tags-view" />
     </ui:VisualElement>

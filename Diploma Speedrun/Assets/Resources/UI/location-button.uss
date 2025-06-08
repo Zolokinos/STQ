@@ -1,4 +1,4 @@
-.front-button {
+.loaction-button {
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
@@ -7,6 +7,6 @@
     flex-grow: 1;
 }
 
-.front-button:hover {
+.location-button:hover {
     background-color: rgba(76, 255, 226, 0.91);
 }

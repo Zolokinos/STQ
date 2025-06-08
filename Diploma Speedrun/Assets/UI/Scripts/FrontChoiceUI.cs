@@ -16,14 +16,11 @@ namespace UI
         private Button _choiceButton;
         private bool _isAvailable;
 
-        public delegate void ChoiceHandler(Choice choice);
-        public event ChoiceHandler MadenChoice;
-        
-        public FrontChoiceUI(VisualElement root, Choice choice, WorldState worldState, VisualTreeAsset dialogeChoice)
+        public FrontChoiceUI(VisualElement root, Choice choice, WorldState worldState)
         {
             _choice = choice ??  throw new System.ArgumentNullException(nameof(choice));
             _worldState = worldState ??  throw new System.ArgumentNullException(nameof(worldState));
-            _dialogeChoice =  dialogeChoice ??  throw new System.ArgumentNullException(nameof(dialogeChoice));
+            _dialogeChoice = Resources.Load<VisualTreeAsset>("UI/dialoge-choice");
             _isAvailable = _choice.IsAvailable(_worldState);
             
             Initialize(root);
@@ -49,8 +46,7 @@ namespace UI
             if (_isAvailable)
             {
                 _choice.Affect(_worldState);
-                _worldState.day += 1;
-                MadenChoice?.Invoke(_choice);
+                _worldState.Day += 1;
                 SceneManager.LoadScene("Map");
             }
         }

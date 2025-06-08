@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:Label text="Label" name="description" />
+        <ui:Button text="Button" name="go" />
+    </ui:VisualElement>
+</ui:UXML>

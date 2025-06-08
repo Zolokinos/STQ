@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
-using UnityEditor.Analytics;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -12,91 +11,50 @@ namespace UI
     [RequireComponent(typeof(UIDocument))]
     public class MapUI : MonoBehaviour
     {
+        private UIDocument _document;
+        private VisualTreeAsset _endMenu;
+        
         [SerializeField] private FrontSetConfig _frontsConfig;
         [SerializeField] private WorldState _worldState;
-        [SerializeField] private VisualTreeAsset _endMenu;
-        
-        private UIDocument _document;
 
         private InfoUI _infoUI;
-        private List<FrontOnMapUI> _frontsUI;
+        private List<LocationOnMapUI> _locationsUI;
         
         void Awake()
         {
             _document = GetComponent<UIDocument>();
-            _frontsUI = _worldState.frontsUI;
+            _locationsUI = new List<LocationOnMapUI>(Enum.GetValues(typeof(Location)).Length);
+            foreach (var location in Enum.GetValues(typeof(Location)))
+            {
+                var locationUI = _document.rootVisualElement.Q<VisualElement>("location" + (int)location);
+                _locationsUI.Add(new LocationOnMapUI(locationUI, _worldState, (Location) location, _frontsConfig));
+            }
+            _endMenu = Resources.Load<VisualTreeAsset>("UI/end-menu");
+            
+            _infoUI = new InfoUI(_document.rootVisualElement.Q<VisualElement>("info"), _worldState);
+            InitFrontsConfig();
+        }
 
-            FindFiasco();
-            
-            if (TryEndGame())
-                    return;
-            
-            RefreshInfo();
-            RefreshFronts();
+        //should be placed somewhere else...
+        void InitFrontsConfig()
+        {
+            var endGameFront = _frontsConfig.fronts.Find(front => front.name == "Призыв");
+            //dirty. It should be global event (Bus), but now KISS
+            endGameFront.FiascoAffected += EndGame;
         }
         
-        private void RefreshInfo()
+        void Update()
         {
-            _infoUI = new InfoUI(
-                _document.rootVisualElement.Q<VisualElement>("info"),
-                _worldState
-            );
-        }
-        private void RefreshFronts()
-        {
-            for (int i = 0; i < _frontsUI.Capacity; i++)
-            {
-                _frontsUI[i] = (new FrontOnMapUI(
-                            _document.rootVisualElement.Q<VisualElement>("front" + i),
-                            GetFrontConfig((Location)i),
-                            _worldState
-                        )
-                    );
-            }
-        }
-
-        //PIECE OF SHIT
-        private void FindFiasco()
-        {
-            foreach (var frontUI in _frontsUI)
-            {
-                var currentFront = frontUI?._frontConfig;
-                if (currentFront == null)
-                    continue;
-                if (currentFront.GetCurrentStage(_worldState) == null && !currentFront.IsCompleted)
-                    currentFront.FiascoAffect(_worldState);
-            }
+            return;
         }
         
-        //PIECE OF SHIT
-        private FrontConfig GetFrontConfig(Location location)
+        private void EndGame(WorldState worldState)
         {
-            var currentFront = _frontsUI.ElementAtOrDefault((int)location)?._frontConfig;
-            if (currentFront != null && !currentFront.IsCompleted)
-            {
-                if (currentFront.GetCurrentStage(_worldState) != null)
-                    return currentFront;
-            }
-            var  result = _frontsConfig.fronts.FirstOrDefault(
-                frontConfig => (frontConfig.location == location && 
-                                frontConfig.day == _worldState.day &&
-                                frontConfig.AreRequirementsMet(_worldState)
-                ));
-            return result;
-        }
-
-        private bool TryEndGame()
-        {
-            if (_worldState.day < 4 || !_worldState.tags[FrontTag.Смерть])
-            {
-                return false;
-            }
             _document.rootVisualElement.Clear();
             var endMenu = _endMenu.Instantiate();
             var label = endMenu.Q<Label>("end-message");
-            label.text = "ВАС ОТПРАВИЛИ НА ВОЙНУ";
+            label.text = "ВАС ПРИЗВАЛИ НА ВОЙНУ";
             _document.rootVisualElement.Add(endMenu);
-            return true;
         }
     }
 }

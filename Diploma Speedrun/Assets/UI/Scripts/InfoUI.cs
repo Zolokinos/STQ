@@ -17,6 +17,7 @@ namespace UI
         public InfoUI(VisualElement root, WorldState worldState)
         {
             _worldState = worldState;
+            Bus<StateChanged<FrontTag>>.Event += UpdateTagsView;
             Initialize(root);
         }
 
@@ -24,11 +25,12 @@ namespace UI
         {
             _skipButton = Root.Q<Button>("skip");
             _tagsView = Root.Q<ScrollView>("tags-view");
-            FillFrontTags();
+            UpdateTagsView(_worldState);
         }
 
-        private void FillFrontTags()
+        private void UpdateTagsView(WorldState worldState)
         {
+            _tagsView.Clear();
             var tagsLabel = new Label();
             tagsLabel.style.backgroundColor = Color.white;
             foreach (FrontTag tag in _worldState.tags.Keys)
@@ -46,8 +48,8 @@ namespace UI
 
         private void OnSkip(ClickEvent evt)
         {
-            _worldState.day += 1;
-            SceneManager.LoadScene("Map");
+            _worldState.Day += 1;
+            Debug.Log("DAY SKIP");
         }
 
         public override void Dispose() {}

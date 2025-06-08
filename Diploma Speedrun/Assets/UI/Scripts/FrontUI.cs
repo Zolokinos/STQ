@@ -11,7 +11,6 @@ namespace UI
     [RequireComponent(typeof(UIDocument))]
     public class FrontUI : MonoBehaviour
     { 
-        [SerializeField] private VisualTreeAsset _dialogeChoice;
         private UIDocument _uiDocument;
 
         [SerializeField] private WorldState _worldState;
@@ -47,14 +46,11 @@ namespace UI
 
             foreach (var choice in _currentStage.choices)
             {
-                var frontChoiceUI = new FrontChoiceUI(
+                _choices.Add(new FrontChoiceUI(
                     _root,
                     choice,
-                    _worldState,
-                    _dialogeChoice
-                );
-                frontChoiceUI.MadenChoice += (choice) => _frontConfig.IsCompleted = true;
-                _choices.Add(frontChoiceUI);
+                    _worldState
+                ));
             }
         }
 
@@ -65,7 +61,7 @@ namespace UI
 
         private void OnSkip(ClickEvent evt)
         {
-            _worldState.day += 1;
+            _worldState.Day += 1;
             SceneManager.LoadScene("Map");
         }
     }
