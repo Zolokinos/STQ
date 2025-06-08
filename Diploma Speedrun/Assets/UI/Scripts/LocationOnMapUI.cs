@@ -82,7 +82,6 @@ namespace UI
             frontListRoot.AddToClassList("absolute");
             _frontList = new FrontListUI(frontListRoot, _worldState, _currentFronts);
             _button = Root.Q<Button>("location-button");
-            _button.text = "Here some fronts!";
         }
 
         protected override void RegisterButtonCallbacks()

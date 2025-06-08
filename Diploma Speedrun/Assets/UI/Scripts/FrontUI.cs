@@ -32,7 +32,7 @@ namespace UI
         {
             _frontConfig = _worldState.currentFront ?? throw new ArgumentNullException(nameof(_worldState));
             _currentStage = _frontConfig.GetCurrentStage(_worldState) ?? throw new ArgumentNullException(nameof(_frontConfig));
-            _root = _uiDocument.rootVisualElement ?? throw new NullReferenceException(nameof(_uiDocument));
+            _root = _uiDocument.rootVisualElement.Q<VisualElement>("root") ?? throw new NullReferenceException(nameof(_uiDocument));
 
             SetVisualElements();
             RegisterButtonCallbacks();

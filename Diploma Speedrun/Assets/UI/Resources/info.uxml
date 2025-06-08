@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; background-color: rgb(180, 128, 60);">
+                <ui:Label text="ДЕНЬ" name="day-counter" style="-unity-font-style: bold; font-size: 20px;" />
+            </ui:VisualElement>
+            <ui:Button text="Пропустить день" name="skip" style="font-size: 20px; flex-shrink: 1; flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:ScrollView name="tags-view" />
+    </ui:VisualElement>
+</ui:UXML>

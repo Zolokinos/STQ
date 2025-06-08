@@ -4,6 +4,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -22,6 +23,10 @@ namespace UI
         
         void Awake()
         {
+            foreach (var front in _frontsConfig.fronts)
+            {
+                front.INIT();
+            }
             _document = GetComponent<UIDocument>();
             _locationsUI = new List<LocationOnMapUI>(Enum.GetValues(typeof(Location)).Length);
             foreach (var location in Enum.GetValues(typeof(Location)))
@@ -50,8 +55,10 @@ namespace UI
         
         private void EndGame(WorldState worldState)
         {
+            Debug.Log("END");
             _document.rootVisualElement.Clear();
             var endMenu = _endMenu.Instantiate();
+            endMenu.contentContainer.style.flexGrow = 1f;
             var label = endMenu.Q<Label>("end-message");
             label.text = "ВАС ПРИЗВАЛИ НА ВОЙНУ";
             _document.rootVisualElement.Add(endMenu);

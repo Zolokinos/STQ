@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/location-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#location-button" />
+    <Style src="project://database/Assets/Resources/UI/common.uss?fileID=7433441132597879392&amp;guid=c5fd8770b48bac1e48d6087c0a2e0230&amp;type=3#common" />
+    <ui:Button text="Есть дело" name="location-button" class="front-button loaction-button" style="font-size: 20%; -unity-font-style: bold; overflow: visible;" />
+</ui:UXML>

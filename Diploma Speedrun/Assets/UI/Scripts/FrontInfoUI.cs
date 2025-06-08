@@ -32,7 +32,7 @@ namespace UI
             _description = ui.Q<Label>("description");
             _goButton = ui.Q<Button>("go");
             _goButton.SetEnabled(!_frontConfig.IsCompleted);
-            _description.text = _frontConfig.frontName + "\n" + _frontConfig.GetCurrentStage(_worldState).text;
+            _description.text = _frontConfig.frontName;
         }
 
         protected override void RegisterButtonCallbacks()
