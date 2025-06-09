@@ -49,7 +49,7 @@ namespace UI
         {
             var endGameFront = _frontsConfig.fronts.Find(front => front.name == "Призыв");
             //dirty. It should be global event (Bus), but now KISS
-            endGameFront.FiascoAffected += EndGame;
+            Bus<StateChanged<FrontTag>>.Event += OnTagsChanged;
             //It is much worse
             Bus<FrontLoad>.Event += LoadFront;
         }
@@ -73,15 +73,18 @@ namespace UI
                 root?.RemoveFromClassList("hidden");
             }
         }
-        
-        private void EndGame(WorldState worldState)
+
+        private void OnTagsChanged(WorldState worldState)
         {
-            _document.rootVisualElement.Clear();
-            var endMenu = _endMenu.Instantiate();
-            endMenu.contentContainer.style.flexGrow = 1f;
-            var label = endMenu.Q<Label>("end-message");
-            label.text = "ВАС ПРИЗВАЛИ НА ВОЙНУ";
-            _document.rootVisualElement.Add(endMenu);
+            if (worldState.tags[FrontTag.Смерть])
+            {
+                _document.rootVisualElement.Clear();
+                var endMenu = _endMenu.Instantiate();
+                endMenu.contentContainer.style.flexGrow = 1f;
+                var label = endMenu.Q<Label>("end-message");
+                label.text = "ВАС ПРИЗВАЛИ НА ВОЙНУ";
+                _document.rootVisualElement.Add(endMenu);
+            }
         }
     }
 }
