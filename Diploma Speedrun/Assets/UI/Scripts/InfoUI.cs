@@ -60,7 +60,6 @@ namespace UI
         private void OnSkip(ClickEvent evt)
         {
             _worldState.Day += 1;
-            Debug.Log("DAY SKIP");
         }
 
         public override void Dispose() {}

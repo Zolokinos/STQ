@@ -8,53 +8,47 @@ using UnityEngine.UIElements;
 
 namespace UI
 {
-    [RequireComponent(typeof(UIDocument))]
-    public class FrontUI : MonoBehaviour
+    public class FrontUI : UIView
     { 
-        private UIDocument _uiDocument;
-
-        [SerializeField] private WorldState _worldState;
+        private WorldState _worldState;
         private FrontConfig _frontConfig;
 
+        private VisualTreeAsset _assetUI;
+        
         private List<FrontChoiceUI> _choices = new();
         private Button _skip;
         private Label _description;
         private StageConfig _currentStage;
-        private VisualElement _root;
         
-        void Awake()
-        {
-            _uiDocument = GetComponent<UIDocument>();
-            Refresh();
-        }
-
-        public void Refresh()
-        {
-            _frontConfig = _worldState.currentFront ?? throw new ArgumentNullException(nameof(_worldState));
+        public FrontUI(VisualElement root, WorldState worldState, FrontConfig frontConfig)
+        { 
+            _assetUI = Resources.Load<VisualTreeAsset>("front");
+            _worldState = worldState;
+            _frontConfig = frontConfig;
             _currentStage = _frontConfig.GetCurrentStage(_worldState) ?? throw new ArgumentNullException(nameof(_frontConfig));
-            _root = _uiDocument.rootVisualElement.Q<VisualElement>("root") ?? throw new NullReferenceException(nameof(_uiDocument));
-
-            SetVisualElements();
-            RegisterButtonCallbacks();
+            
+            Initialize(root);
         }
 
-        protected void SetVisualElements()
+        protected override void SetVisualElements()
         {
-            _skip = _root.Q<Button>("skip");
-            _description = _root.Q<Label>("description");
+            _assetUI.CloneTree(Root);
+            _skip = Root.Q<Button>("skip");
+            _description = Root.Q<Label>("description");
             _description.text = _currentStage.text;
 
             foreach (var choice in _currentStage.choices)
             {
                 _choices.Add(new FrontChoiceUI(
-                    _root,
+                    //should be refactored
+                    Root.Q<VisualElement>("root"),
                     choice,
                     _worldState
                 ));
             }
         }
 
-        protected void RegisterButtonCallbacks()
+        protected override void RegisterButtonCallbacks()
         {
             _skip.RegisterCallback<ClickEvent>(OnSkip);
         }
@@ -62,7 +56,9 @@ namespace UI
         private void OnSkip(ClickEvent evt)
         {
             _worldState.Day += 1;
-            SceneManager.LoadScene("Map");
+            Bus<FrontLoad>.Event?.Invoke(false);
         }
+
+        public override void Dispose() {}
     }
 }

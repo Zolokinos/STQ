@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="info" src="project://database/Assets/Resources/UI/info.uxml?fileID=9197481963319205126&amp;guid=3b005d66500d43e39b286342ec9c6cd0&amp;type=3#info" />
-    <ui:Template name="front-on-map" src="project://database/Assets/Resources/UI/location-on-map.uxml?fileID=9197481963319205126&amp;guid=7588bb344e445e4a4b8b24a93dd467dd&amp;type=3#location-on-map" />
-    <Style src="project://database/Assets/Resources/UI/location-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#location-button" />
-    <Style src="project://database/Assets/Resources/UI/common.uss?fileID=7433441132597879392&amp;guid=c5fd8770b48bac1e48d6087c0a2e0230&amp;type=3#common" />
+    <ui:Template name="info" src="project://database/Assets/UI/Resources/info.uxml?fileID=9197481963319205126&amp;guid=3b005d66500d43e39b286342ec9c6cd0&amp;type=3#info" />
+    <ui:Template name="front-on-map" src="project://database/Assets/UI/Resources/location-on-map.uxml?fileID=9197481963319205126&amp;guid=7588bb344e445e4a4b8b24a93dd467dd&amp;type=3#location-on-map" />
+    <Style src="project://database/Assets/UI/Resources/location-button.uss?fileID=7433441132597879392&amp;guid=0adc3371418070efeb66519cdc287dd7&amp;type=3#location-button" />
+    <Style src="project://database/Assets/UI/Resources/common.uss?fileID=7433441132597879392&amp;guid=c5fd8770b48bac1e48d6087c0a2e0230&amp;type=3#common" />
     <ui:VisualElement name="root" style="flex-grow: 1; justify-content: space-between; align-items: stretch; flex-wrap: nowrap; align-content: flex-start; background-color: rgb(255, 255, 255);">
         <ui:Instance template="info" name="info" style="height: 40%;" />
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-size: 100% 100%; background-image: url(&quot;project://database/Assets/Game-map.jpg?fileID=2800000&amp;guid=bbe269fb9d1961938b8cab55cc2cd74c&amp;type=3#Game-map&quot;);">
@@ -12,4 +12,5 @@
             <ui:Instance template="front-on-map" name="location3" style="position: absolute; left: 40%; top: 50%; height: 150px; width: 150px;" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="front" class="hidden" style="flex-grow: 1;" />
 </ui:UXML>

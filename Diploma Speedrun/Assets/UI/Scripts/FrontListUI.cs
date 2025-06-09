@@ -61,7 +61,6 @@ namespace UI
         private void OnMouseLeave(MouseLeaveEvent evt)
         {
             Hide();
-            Debug.Log("HIDE");
         }
 
         public override void Dispose() {}

@@ -97,7 +97,6 @@ namespace UI
             _frontList.Show();
             _frontList.Root.style.top = evt.localMousePosition.y;
             _frontList.Root.style.left = evt.localMousePosition.x;
-            Debug.Log("SHOW");
         }
         
         public override void Dispose() {}

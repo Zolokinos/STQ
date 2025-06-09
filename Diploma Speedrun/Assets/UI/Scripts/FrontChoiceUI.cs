@@ -47,7 +47,7 @@ namespace UI
             {
                 _choice.Affect(_worldState);
                 _worldState.Day += 1;
-                SceneManager.LoadScene("Map");
+                Bus<FrontLoad>.Event?.Invoke(false);
             }
         }
 

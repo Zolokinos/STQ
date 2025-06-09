@@ -43,7 +43,7 @@ namespace UI
         private void LoadFront(ClickEvent evt)
         {
             _worldState.currentFront = _frontConfig;
-            SceneManager.LoadScene("Front", LoadSceneMode.Additive);
+            Bus<FrontLoad>.Event?.Invoke(true);
         }
         
         public override void Dispose() {}

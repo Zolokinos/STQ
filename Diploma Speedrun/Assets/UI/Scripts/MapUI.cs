@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -18,23 +19,26 @@ namespace UI
         [SerializeField] private FrontSetConfig _frontsConfig;
         [SerializeField] private WorldState _worldState;
 
+        private FrontUI _frontUI;
         private InfoUI _infoUI;
         private List<LocationOnMapUI> _locationsUI;
         
         void Awake()
         {
+            DontDestroyOnLoad(this);
             foreach (var front in _frontsConfig.fronts)
             {
                 front.INIT();
             }
             _document = GetComponent<UIDocument>();
+            _endMenu = Resources.Load<VisualTreeAsset>("end-menu");
+            
             _locationsUI = new List<LocationOnMapUI>(Enum.GetValues(typeof(Location)).Length);
             foreach (var location in Enum.GetValues(typeof(Location)))
             {
                 var locationUI = _document.rootVisualElement.Q<VisualElement>("location" + (int)location);
                 _locationsUI.Add(new LocationOnMapUI(locationUI, _worldState, (Location) location, _frontsConfig));
             }
-            _endMenu = Resources.Load<VisualTreeAsset>("end-menu");
             
             _infoUI = new InfoUI(_document.rootVisualElement.Q<VisualElement>("info"), _worldState);
             InitFrontsConfig();
@@ -46,16 +50,32 @@ namespace UI
             var endGameFront = _frontsConfig.fronts.Find(front => front.name == "Призыв");
             //dirty. It should be global event (Bus), but now KISS
             endGameFront.FiascoAffected += EndGame;
+            //It is much worse
+            Bus<FrontLoad>.Event += LoadFront;
         }
-        
-        void Update()
+
+        //PIECE OF CODE
+        private void LoadFront(bool loadFront)
         {
-            return;
+            var root = _document.rootVisualElement.Q<VisualElement>("root");
+            var front = _document.rootVisualElement.Q<VisualElement>("front");
+            if (loadFront)
+            {
+                _frontUI = new FrontUI(front, _worldState, _worldState.currentFront);
+                front?.RemoveFromClassList("hidden");
+                root?.AddToClassList("hidden");
+            }
+            else
+            {
+                front?.Clear();
+                _frontUI = null;
+                front?.AddToClassList("hidden");
+                root?.RemoveFromClassList("hidden");
+            }
         }
         
         private void EndGame(WorldState worldState)
         {
-            Debug.Log("END");
             _document.rootVisualElement.Clear();
             var endMenu = _endMenu.Instantiate();
             endMenu.contentContainer.style.flexGrow = 1f;
